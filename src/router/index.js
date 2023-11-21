@@ -19,8 +19,8 @@ const router = createRouter({
       component: CountryView
     },
     {
-      path: "/:catchAll(.*)",
-      name: "Home",
+      path: "/:pathMatch(.*)",
+      name: "NotFound",
       component: HomeView,
       meta: {
         title: "Find Countries"
