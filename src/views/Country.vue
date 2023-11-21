@@ -56,7 +56,7 @@
 
 <script setup>
 import { useCountriesStore } from '@/stores/countries.js';
-import { computed } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -67,6 +67,12 @@ const country = computed(() => {
         return item.alpha3Code === route.params.id
     }) 
 });
+
+watch(country, (newCountry, oldCountry) => {
+    if(country.value){
+        window.document.title = "Find Countries | "+country.value.name;
+    }
+})
 
 const findBorderCountries = computed(() => {
     const countries = store.countries.filter((item) => {
@@ -80,6 +86,10 @@ const selectCountry = async (id) => {
     store.selectCountry(id);
     return router.push({ name: 'Country', params: {id} })
 }
+
+onMounted(() => {
+    window.document.title = "Find Countries | "+country.value.name;
+})
 </script>
 
 <style>

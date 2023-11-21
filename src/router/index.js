@@ -8,14 +8,33 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: "Find Countries"
+      }
     },
     {
-      path: '/country/:id',
+      path: '/:id',
       name: 'Country',
       component: CountryView
     },
+    {
+      path: "/:catchAll(.*)",
+      name: "Home",
+      component: HomeView,
+      meta: {
+        title: "Find Countries"
+      }
+    },
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  const title = to.meta.title
+  if (title) {
+    document.title = title
+  }
+  next()
 })
 
 export default router
