@@ -35,10 +35,10 @@
                         <strong>Top Level Domain:</strong> {{ country.topLevelDomain.toString() }}
                     </p>
                     <p>
-                        <strong>Currencies:</strong> {{ country.topLevelDomain.toString() }}
+                        <strong>Currencies:</strong> {{ country.currencies.map(item => item.name).join(', ') }}
                     </p>
                     <p>
-                        <strong>Languages:</strong> {{ country.languages.map(item => item.name).toString() }}
+                        <strong>Languages:</strong> {{ country.languages.map(item => item.name).join(', ') }}
                     </p>
                 </div>
             </div>
